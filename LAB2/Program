@@ -1,0 +1,46 @@
+1.Create a keyspace by name Employee
+  create keyspace Employee with replication={'class':'SimpleStrategy','replication_factor':3};
+
+2. Create a column family by name
+Employee-Info with attributes
+Emp_Id Primary Key, Emp_Name,
+Designation, Date_of_Joining, Salary,
+Dept_Name
+
+  create table Employee_info (Emp_Id int Primary key, Emp_Name text, Designation text, Date_of_JOining text, Salary int, Dept_Name text);
+
+
+3.Insert the values into the table in batch
+  begin batch 
+  insert into Employee_info(Emp_Id,Emp_Name,Designation,Date_of_Joining,Salary,Dept_Name)
+  Values(121,'Samrudh','Manager','12-01-2020',40000,'ISE'); 
+  insert into Employee_info(Emp_Id,Emp_Name,Designation,Date_of_Joining,Salary,Dept_Name) 
+  values(122,'Sagar','assistant','21-01-2021',20000,'CSE'); 
+  insert into Employee_info(Emp_Id,Emp_Name,Designation,Date_of_Joining,Salary,Dept_Name)
+  values(123,'Sachin','HR','17-07-2020',35000,'MECH');
+  apply batch;
+
+4. Update Employee name and Department of Emp-Id
+121
+   update Employee_info set Emp_Name='Anant', Dept_Name='AS' where Emp_Id=121;
+
+5. Sort the details of Employee records based on
+salary
+
+6. Alter the schema of the table Employee_Info
+to add a column Projects which stores a set of Projects done by the corresponding
+Employee.
+
+   alter table Employee_info 
+   add Projects set<text>;
+   
+7. Update the altered table to add project
+names.
+
+   update Employee_info set Projects={'WebApp','DataScience'} where Emp_Id=121;
+   
+8.Create a TTL of 15 seconds to display the
+values of Employees.
+
+insert into Employee_info(Emp_Id,Emp_Name,Designation,Date_of_Joining,Salary,Dept_Name)
+values(124,'Rani','manger','04-09-2019',45000,'CIVIL') using ttl 15;
