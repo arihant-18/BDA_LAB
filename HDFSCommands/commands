@@ -1,0 +1,35 @@
+start-all.sh
+
+jps
+
+1. mkdir
+hdfs dfs -mkdir /anant
+
+2. ls
+hadoop fs -ls /
+
+3. put
+hdfs dfs -put /home/hduser/welcome.txt /anant/wc.txt
+
+4. copyFromLocal
+hdfs dfs -copyFromLocal /home/hduser/welcome.txt /anant/wc2.txt
+
+5. get
+  i: hdfs dfs -get /anant/wc.txt /home/hduser/Downloads/WAWC.txt
+  ii: hdfs dfs -getmerge /anant/wc.txt /anant/wc1.txt /home/hduser/Desktop/Merge.txt
+  iii:hadoop fs -getfacl /anant/
+  
+6. copyToLocal
+hdfs dfs -copyToLocal /anant/wc.txt /home/hduser/Desktop
+
+7. cat
+hdfs dfs -cat /anant/wc.txt
+
+8. mv
+hadoop fs -mv /anant /arihant
+
+9. cp
+hadoop fs -cp /arihant /anant
+
+
+
