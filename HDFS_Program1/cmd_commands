@@ -1,0 +1,8 @@
+ start-all.sh
+jps
+hadoop fs -ls /
+hadoop fs -mkdir /aaad
+hadoop fs -copyFromLocal /home/hduser/Desktop/sample.txt /aaad/test.txt
+hadoop jar /home/hduser/eclipse-workspace/arihant.jar arihant.WCDriver /aaad/test.txt /output
+hadoop fs -ls /output/
+hadoop fs -cat /output/part-00000
